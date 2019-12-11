@@ -1,0 +1,114 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="profile">
+
+  <form [formGroup]="formPerfil" (ngSubmit)="editar()">
+
+    <ion-card no-margin>
+      <ion-card-content class="bg-profile">
+        <ion-avatar item-start class="avatar">
+          <img src="assets/img/perfil1.jpg" class="ion-margin">
+        </ion-avatar>
+        <h1 text-center>{{perfil?.user.name}}</h1>
+        <div text-center>
+          <ion-button icon-left color="secondary">
+            <ion-icon name="photos"></ion-icon>
+            Adicionar Foto
+          </ion-button>
+        </div>
+      </ion-card-content>
+
+      <ion-button (click)="ActionSheet()" expand="block" color="danger" class="login-button">
+        <ion-ripple-effect></ion-ripple-effect> Excluir Conta
+      </ion-button>
+
+      <ion-grid fixed no-padding>
+        <ion-row>
+          <ion-col size="12" padding>
+
+            <ion-list margin-bottom>
+              <ion-list-header color="light">
+                <ion-label class="fw700">Informações</ion-label>
+              </ion-list-header>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">
+                  Full Name:
+                </ion-label>
+                <ion-input inputmode="text" placeholder="Ex..: Carlos Nogueira" formControlName='name'
+                  value="{{perfil?.user.name}}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">
+                  Email:
+                </ion-label>
+                <ion-input inputmode="email" formControlName='email' placeholder="Ex.: c.nogueira@mail.com"
+                  value="{{perfil?.user.email}}"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">
+                  Telefone:
+                </ion-label>
+                <ion-input [brmasker]="{phone: true}" value="{{perfil?.user.telefone}}" inputmode="text" formControlName='telefone'
+                  placeholder="Ex.: (99) 99999-9999">
+                </ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">
+                  Endereço:
+                </ion-label>
+                <ion-input [brmasker]="{mask:'00000-000 ', len:9, userCaracters: true}" value="{{perfil?.user.endereco}}" inputmode="text" formControlName='endereco'
+                  placeholder="Ex.: Rua Duque Marcos, 42">
+                </ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">
+                  Cep:
+                </ion-label>
+                <ion-input value="{{perfil?.user.cep}}" inputmode="text" formControlName='cep'
+                  placeholder="Ex.: 66666-666">
+                </ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark">Cidade</ion-label>
+                <ion-select value="{{perfil?.user.cidade}}" formControlName='cidade'>
+                  <ion-select-option value="Santarém">Santarém</ion-select-option>
+                  <ion-select-option value="Altamira">Altamira</ion-select-option>
+                  <ion-select-option value="Belterra">Belterra</ion-select-option>
+                  <ion-select-option value="Monte Alegre">Monte Alegre</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark">Estado</ion-label>
+                <ion-select value="{{perfil?.user.estado}}" formControlName='estado'>
+                  <ion-select-option value="Pará">Pará</ion-select-option>
+                  <ion-select-option value="Acre">Acre</ion-select-option>
+                  <ion-select-option value="São Paulo">São Paulo</ion-select-option>
+                  <ion-select-option value="Tocantis">Tocantis</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-button expand="block" color="primary" type="submit" class="login-button">
+        <ion-ripple-effect></ion-ripple-effect>Confirmar Edição
+      </ion-button>
+    </ion-card>
+  </form>
+
+</ion-content>
